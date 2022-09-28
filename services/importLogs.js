@@ -1,16 +1,12 @@
 import fs from "fs";
 import readline from "readline";
-import {connect, insertLogs} from "./db/db.js";
+import {connect, insertLogs} from "../db/db.js";
 
-async function init() {
+export async function importFileLog() {
     await connect();
-    importFileLog("./db/logs.txt", "utf-8");
-}
-
-function importFileLog(filepath, encode = "utf-8") {
     let arrayRows = [];
 
-    const readStream = fs.createReadStream(filepath, encode);
+    const readStream = fs.createReadStream("./db/logs.txt", "utf-8");
     let rl = readline.createInterface({input: readStream})
     rl.on('line', (line) => {
         let jsonLine = JSON.parse(line)
@@ -32,5 +28,3 @@ function importFileLog(filepath, encode = "utf-8") {
         }
     });
 }
-
-init();

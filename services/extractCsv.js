@@ -5,20 +5,17 @@ import {
     selectRequestsByService, 
     selectRequestsByConsumer,
     selectAvgTimeByService
-} from "./db/db.js";
+} from "../db/db.js";
 
-var dir = './csv';
+var dir = '../csv';
 
-async function init() {
+export async function extractCsv() {
     if(!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
     }
     
     await connect();
-    extractCsv();
-}
 
-function extractCsv() {
     extractRequestsByService();
     extractRequestsByConsumer();
     extractAvgTimeByService();
@@ -86,5 +83,4 @@ async function extractAvgTimeByService() {
     })
 }
 
-
-init ();
+extractCsv();

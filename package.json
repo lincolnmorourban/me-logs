@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "importLogs": "node importLogs.js",
-    "extractCsv": "node extractCsv.js"
+    "importLogs": "node indexImportLog.js",
+    "extractCsv": "node indexExtractCsv.js"
   },
   "repository": {
     "type": "git",
