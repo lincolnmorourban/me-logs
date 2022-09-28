@@ -1,0 +1,28 @@
+{
+  "name": "me-logs",
+  "version": "1.0.0",
+  "description": "Projeto de teste para vaga de desenvolvedor backend Melhor Envio Autor: Lincoln Moro Urban",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "importLogs": "node importLogs.js",
+    "extractCsv": "node extractCsv.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lincolnmorourban/me-logs.git"
+  },
+  "author": "Lincoln Moro Urban",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lincolnmorourban/me-logs/issues"
+  },
+  "homepage": "https://github.com/lincolnmorourban/me-logs#readme",
+  "dependencies": {
+    "csv-stringify": "^6.2.0",
+    "fs": "^0.0.1-security",
+    "mysql2": "^2.3.3",
+    "readline": "^1.3.0",
+    "sequelize": "^6.23.2"
+  }
+}
