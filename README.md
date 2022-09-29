@@ -15,6 +15,8 @@ Após clonar o repositório, seguir os passos listados abaixo para rodar o proje
 
 * Adicionar o arquivo logs.txt dentro do diretório db do projeto
 
+* Ajustar os dados de conexão com a base local MySQL no arquivo db.js
+
 * Instalar os pacotes do node utilizados
 
 ```
