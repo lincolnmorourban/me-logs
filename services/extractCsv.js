@@ -7,7 +7,7 @@ import {
     selectAvgTimeByService
 } from "../db/db.js";
 
-var dir = '../csv';
+var dir = './csv';
 
 export async function extractCsv() {
     if(!fs.existsSync(dir)) {
@@ -22,63 +22,60 @@ export async function extractCsv() {
 }
 
 async function extractRequestsByService() {
+    let arrayCsv = [];
+
     const filepath = `${dir}/requestByService.csv`;
     const writableStream = fs.createWriteStream(filepath);
-
-    const columns = [
-        "service_name",
-        "count_requests"
-    ];
-
+    const columns = ["service_name", "count_requests"];
     const stringifier = stringify({ header: true, columns: columns });
+
     await selectRequestsByService().then((arrayResult) => {
         if (arrayResult.length) {
-            arrayResult.forEach((row) => {
-                stringifier.write(row);
-                stringifier.pipe(writableStream);
-            });
+            arrayCsv.push(arrayToCSV(arrayResult))
+            stringifier.write(arrayCsv);
+            stringifier.pipe(writableStream);
         }
     })
 }
 
 async function extractRequestsByConsumer() {
+    let arrayCsv = [];
+
     const filepath = `${dir}/requestByConsumer.csv`;
     const writableStream = fs.createWriteStream(filepath);
-
-    const columns = [
-        "consumer",
-        "count_requests"
-    ];
-
+    const columns = ["consumer", "count_requests"];
     const stringifier = stringify({ header: true, columns: columns });
+
     await selectRequestsByConsumer().then((arrayResult) => {
         if (arrayResult.length) {
-            arrayResult.forEach((row) => {
-                stringifier.write(row);
-                stringifier.pipe(writableStream);
-            });
+            arrayCsv.push(arrayToCSV(arrayResult))
+            stringifier.write(arrayCsv);
+            stringifier.pipe(writableStream);
         }
     })
 }
 
 async function extractAvgTimeByService() {
+    let arrayCsv = [];
+
     const filepath = `${dir}/avgTimeByService.csv`;
     const writableStream = fs.createWriteStream(filepath);
-
-    const columns = [
-        "service_name",
-        "avg_gateway",
-        "avg_request",
-        "avg_proxy"
-    ];
-
+    const columns = ["service_name", "avg_gateway", "avg_request", "avg_proxy"];
     const stringifier = stringify({ header: true, columns: columns });
+
     await selectAvgTimeByService().then((arrayResult) => {
         if (arrayResult.length) {
-            arrayResult.forEach((row) => {
-                stringifier.write(row);
-                stringifier.pipe(writableStream);
-            });
+            arrayCsv.push(arrayToCSV(arrayResult))
+            stringifier.write(arrayCsv);
+            stringifier.pipe(writableStream);
         }
     })
+}
+
+function arrayToCSV (data) {
+    var csv = data.map(function(d){
+        return JSON.stringify(Object.values(d));
+    }).join('\n').replace(/(^\[)|(\]$)/mg, '');
+
+    return csv;
 }
