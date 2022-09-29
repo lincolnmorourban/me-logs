@@ -1,5 +1,8 @@
 <h1 align="center">:file_cabinet: me-logs</h1>
 
+## :man_beard: Autor
+Lincoln Moro Urban
+
 ## :memo: Descrição
 Projeto de teste para vaga de desenvolvedor backend Melhor Envio
 
