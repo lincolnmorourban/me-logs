@@ -33,3 +33,5 @@ npm run importLogs
 npm run extractCsv
 ```
 
+Após a geração dos relatórios um diretório csv será criado na raiz do projeto contendo os arquivos CSV.
+
