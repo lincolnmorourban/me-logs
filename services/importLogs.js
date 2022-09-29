@@ -3,6 +3,11 @@ import readline from "readline";
 import {connect, insertLogs} from "../db/db.js";
 
 export async function importFileLog() {
+    if(!fs.existsSync("./db/logs.txt")) {
+        console.log('É necessário adicionar o arquivo logs.txt no diretório db do projeto');
+        return;
+    }
+    
     await connect();
     let arrayRows = [];
 
